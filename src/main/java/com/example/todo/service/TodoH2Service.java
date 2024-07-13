@@ -54,25 +54,25 @@ public class TodoH2Service implements TodoRepository{
         }
     }
 
-    @Override 
+    @Override
     public Todo addTodo(Todo todo) {
-        db.update("INSERT INTO TODOLIST(todo,status,priority)", todo.getTodo(),todo.getStatus(),todo.getPriority());
-        Todo savedTodo = db.queryForObject("SELECT * from todolist where todo = ? and status = ? and priority = ? ", new TodoRowMapper(), todo.getTodo(), todo.getStatus(), todo.getPriority());
+        db.update("INSERT INTO TODOLIST (todo, status, priority) VALUES (?, ?, ?)", todo.getTodo(), todo.getStatus(), todo.getPriority());
+        Todo savedTodo = db.queryForObject("SELECT * FROM todolist WHERE todo = ? AND status = ? AND priority = ?", new TodoRowMapper(), todo.getTodo(), todo.getStatus(), todo.getPriority());
         return savedTodo;
     }
-
     @Override
     public Todo updateTodo(int id, Todo todo) {
         if (todo.getTodo() != null) {
-            db.update("UPDATE todolist set todo = ? where id = ? ", todo.getTodo(),id);
+            db.update("UPDATE todolist SET todo = ? WHERE id = ?", todo.getTodo(), id);
         }
         if (todo.getStatus() != null) {
-            db.update("UPDATE todolist set status = ? where id = ? ", todo.getStatus(), id);
+            db.update("UPDATE todolist SET status = ? WHERE id = ?", todo.getStatus(), id);
         }
         if (todo.getPriority() != null) {
-            db.update("UPDATE todolist set priority = ? where id = ? ", todo.getPriority(), id);
+            db.update("UPDATE todolist SET priority = ? WHERE id = ?", todo.getPriority(), id);
         }
 
         return getTodoById(id);
     }
+
 }
