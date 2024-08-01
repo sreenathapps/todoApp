@@ -1,9 +1,11 @@
-/*
- * You can use the following import statements
- * 
- * import org.springframework.data.jpa.repository.JpaRepository;
- * import org.springframework.stereotype.Repository;
- * 
- */
+package com.example.todo.repository;
 
-// Write your code here
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.todo.model.Todo;
+
+/**
+ * TodoJpaRepository
+ */
+public interface TodoJpaRepository extends JpaRepository<Todo, Integer> {
+}
