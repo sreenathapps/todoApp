@@ -43,7 +43,7 @@ public class TodoController {
     @DeleteMapping("/todos/{id}")
     public void deleteTodo(@PathVariable int id) {
         todoJpaService.deleteTodo(id);
-        throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        throw new ResponseStatusException(HttpStatus.OK);
     }
 
 }
